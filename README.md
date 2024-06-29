@@ -1,2 +1,2 @@
 # Little_Whitch
-A puzle game made for all audiences
+A 2D platformer puzle game made for all audiences
