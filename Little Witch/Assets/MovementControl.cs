@@ -13,7 +13,7 @@ public class MovementControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //checks if character moves horizontally
+        //calculates the horizontal move (1 or -1) * runSpeed 
         horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
 
         if (Input.GetButtonDown("Jump"))

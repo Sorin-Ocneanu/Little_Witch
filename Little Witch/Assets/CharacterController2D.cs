@@ -8,21 +8,27 @@ public class CharacterController2D : MonoBehaviour
 	[Range(0, .3f)] [SerializeField] private float m_MovementSmoothing = .05f;	// How much to smooth out the movement
 	[SerializeField] private bool m_AirControl = false;							// Whether or not a player can steer while jumping;
 	[SerializeField] private LayerMask m_WhatIsGround;							// A mask determining what is ground to the character
+	[SerializeField] private LayerMask m_WhatIsInteractive;						// A mask determining what objects are interactable objects
 	[SerializeField] private Transform m_GroundCheck;							// A position marking where to check if the player is grounded.
-	[SerializeField] private Transform m_CeilingCheck;							// A position marking where to check for ceilings
+	[SerializeField] private Transform m_CeilingCheck;							// A position marking where to check for 
+	[SerializeField] private Transform m_RightCheck;							// A position marking where to check for
+	[SerializeField] private Transform m_LeftCheck;								// A position marking where to check for
 	[SerializeField] private Collider2D m_CrouchDisableCollider;				// A collider that will be disabled when crouching
 
-	const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
-	private bool m_Grounded;            // Whether or not the player is grounded.
-	const float k_CeilingRadius = .2f; // Radius of the overlap circle to determine if the player can stand up
+	const float k_GroundedRadius = .2f;			// Radius of the overlap circle to determine if grounded
+	private const float k_RightRadius = .7f;
+	private bool m_Grounded;					// Whether the player is grounded.
+	const float k_CeilingRadius = .2f;			// Radius of the overlap circle to determine if the player can stand up
 	private Rigidbody2D m_Rigidbody2D;
-	private bool m_FacingRight = true;  // For determining which way the player is currently facing.
+	private bool m_FacingRight = true;			// For determining which way the player is currently facing.
 	private Vector3 m_Velocity = Vector3.zero;
 
 	[Header("Events")]
 	[Space]
 
 	public UnityEvent OnLandEvent;
+
+	public UnityEvent OnInteractiveObjectEvent;
 
 	[System.Serializable]
 	public class BoolEvent : UnityEvent<bool> { }
@@ -58,6 +64,18 @@ public class CharacterController2D : MonoBehaviour
 					OnLandEvent.Invoke();
 			}
 		}
+		
+		// The player is near an interactive object if a circlecast to the RightCheck position hits anything designated as interactive
+		Collider2D[] RightCollider = Physics2D.OverlapCircleAll(m_RightCheck.position, k_RightRadius, m_WhatIsInteractive);
+		for (int i = 0; i < RightCollider.Length; i++)
+		{
+			if (RightCollider[i].gameObject != gameObject)
+			{
+				Debug.Log("Detected interactive object");
+			}
+		}
+		
+		
 	}
 
 
