@@ -22,9 +22,6 @@ public class GrabAndMove : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (Input.GetKeyDown("f") && controller.)
-        {
-            
-        }
+
     }
 }
