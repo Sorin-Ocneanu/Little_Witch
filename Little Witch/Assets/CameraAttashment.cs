@@ -8,9 +8,9 @@ public class CameraAttashment : MonoBehaviour
 
 
     // Update is called once per frame
-    private void FixedUpdate()
+    private void Update()
     {
-        attash(Input.GetKeyDown(KeyCode.G));
+        attash(Input.GetKeyDown("g"));
     }
 
     private void attash(bool value)
