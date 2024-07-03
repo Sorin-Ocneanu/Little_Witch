@@ -9,6 +9,8 @@ public class ProjectileScript : MonoBehaviour
     private Camera mainCam;
     private Rigidbody2D rb;
     public float force;
+
+    public Collider2D playerCollider;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +29,11 @@ public class ProjectileScript : MonoBehaviour
         float rot = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
         
         transform.rotation = Quaternion.Euler(0, 0, rot + 90);
+
+        if (playerCollider != null)
+        {
+            Physics2D.IgnoreCollision(GetComponent<Collider2D>(), playerCollider);
+        }
         
         Destroy(gameObject, 3f);
     }
@@ -42,4 +49,5 @@ public class ProjectileScript : MonoBehaviour
         Debug.Log("Collision Detected");
         Destroy(gameObject);
     }
+    
 }
