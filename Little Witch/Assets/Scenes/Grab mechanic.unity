@@ -263,7 +263,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9081effa3fd1c9c4ba668ef6a2b132c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_RightCheck: {fileID: 6186134463521317722}
+  RightCheck: {fileID: 6186134463521317722}
   m_LayerOfMovableObjects:
     serializedVersion: 2
     m_Bits: 1

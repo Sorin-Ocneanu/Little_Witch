@@ -2,15 +2,16 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class GrabAndMove : MonoBehaviour
 {
 
-    [SerializeField] private Transform m_RightCheck; // A position marking where to check for
+    [SerializeField] private Transform RightCheck; // A position marking where to check for
     [SerializeField] private LayerMask m_LayerOfMovableObjects; // The layer of the interactable objects
 
     private const float k_RightRadius = .7f;    //the radius around the point of interactive object detecion
-    private bool F_keyPressed = false;          //used to remember if F key was pressed
+    private bool F_keyPressed;                  //used to remember if F key was pressed
     private Vector3 m_OriginPos;
     private GameObject m_interactiveObject;     //used to remember the interactive object 
 
@@ -18,7 +19,7 @@ public class GrabAndMove : MonoBehaviour
     void Start()
     {
         //check if m_RightCheck is assigned in the inspector
-        if (m_RightCheck == null)
+        if (RightCheck == null)
         {
             Debug.LogError("m_RightCheck is not assigned in the inspector");
             enabled = false; // disable the current script component
@@ -38,7 +39,7 @@ public class GrabAndMove : MonoBehaviour
     void Update()
     {
         //if the F key is pressed 
-        if (Input.GetKeyDown(KeyCode.F) == true)
+        if (Input.GetKeyDown(KeyCode.F))
         {
             //check if near an interactive object
             if (DetectInteractiveObjects())
@@ -70,12 +71,12 @@ public class GrabAndMove : MonoBehaviour
 
     private void dockToObject()
     {
-        m_interactiveObject.transform.parent = m_RightCheck.transform;
+        m_interactiveObject.transform.SetParent(RightCheck.transform); 
     }
 
     private void unDockFromObject()
     {
-        Debug.Log("was here heehe");
+        
         m_interactiveObject.transform.SetParent(null);
     }
 
@@ -86,7 +87,7 @@ public class GrabAndMove : MonoBehaviour
     private bool DetectInteractiveObjects()
     {
         //making the circlecast that detects objects near to it
-        Collider2D[] detectedObjects = Physics2D.OverlapCircleAll(m_RightCheck.position, k_RightRadius, m_LayerOfMovableObjects);
+        Collider2D[] detectedObjects = Physics2D.OverlapCircleAll(RightCheck.position, k_RightRadius, m_LayerOfMovableObjects);
         
         //take each object detected inside the circlecast 
         foreach (Collider2D detectedObject in detectedObjects)
