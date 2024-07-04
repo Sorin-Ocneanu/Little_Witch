@@ -11,7 +11,6 @@ public class GrabAndMove : MonoBehaviour
 
     private const float k_RightRadius = .7f;    //the radius around the point of interactive object detecion
     private bool F_keyPressed = false;          //used to remember if F key was pressed
-    private bool dockedToObject = false;        //used to remember if the character is docked to an object
     private Vector3 m_OriginPos;
     private GameObject m_interactiveObject;     //used to remember the interactive object 
 
@@ -44,18 +43,18 @@ public class GrabAndMove : MonoBehaviour
             //check if near an interactive object
             if (DetectInteractiveObjects())
             {
-                //toggle the value of F_keyPressed
+                //toggle the past value of F_keyPressed
                 F_keyPressed = !F_keyPressed;
                 
                 if (F_keyPressed)
                 {
-                    dockedToObject = true;
+                    dockToObject();
                     Debug.Log("Activated F while near a movable object");
                     
                 }
                 else
                 {
-                    dockedToObject = false;
+                    unDockFromObject();
                     Debug.Log("Deactivated F while near a movable object");
                 }
                 
@@ -69,21 +68,20 @@ public class GrabAndMove : MonoBehaviour
 
     }
 
-    private void FixedUpdate()
+    private void dockToObject()
     {
+        m_interactiveObject.transform.parent = m_RightCheck.transform;
+    }
 
-        if (dockedToObject)
-        {
-            m_interactiveObject.transform.parent = m_RightCheck.transform;
-            
-        }
-
-        
+    private void unDockFromObject()
+    {
+        Debug.Log("was here heehe");
+        m_interactiveObject.transform.SetParent(null);
     }
 
 
 
-    
+
 // return true if a circlecast to the RightCheck position hits any object inside the "Interactive Objects" layer
     private bool DetectInteractiveObjects()
     {
