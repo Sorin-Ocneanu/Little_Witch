@@ -7,10 +7,13 @@ public class GrabAndMove : MonoBehaviour
 {
 
     [SerializeField] private Transform m_RightCheck; // A position marking where to check for
-    [SerializeField] private LayerMask m_WhatIsInteractive; // A mask determining what objects are interactable objects
+    [SerializeField] private LayerMask m_LayerOfMovableObjects; // The layer of the interactable objects
 
-    private const float k_RightRadius = .7f;
-    private bool F_keyPressed = false;
+    private const float k_RightRadius = .7f;    //the radius around the point of interactive object detecion
+    private bool F_keyPressed = false;          //used to remember if F key was pressed
+    private bool dockedToObject = false;        //used to remember if the character is docked to an object
+    private Vector3 m_OriginPos;
+    private GameObject m_interactiveObject;     //used to remember the interactive object 
 
     // Start is called before the first frame update
     void Start()
@@ -23,7 +26,7 @@ public class GrabAndMove : MonoBehaviour
         }
 
         //check if m_WhatIsInteractive is assigned in the inspector
-        if (m_WhatIsInteractive.value == 0)
+        if (m_LayerOfMovableObjects.value == 0)
         {
             Debug.LogError("m_WhatIsInteractive is not assigned in the inspector");
             enabled = false; // disable the current script component
@@ -46,10 +49,13 @@ public class GrabAndMove : MonoBehaviour
                 
                 if (F_keyPressed)
                 {
+                    dockedToObject = true;
                     Debug.Log("Activated F while near a movable object");
+                    
                 }
                 else
                 {
+                    dockedToObject = false;
                     Debug.Log("Deactivated F while near a movable object");
                 }
                 
@@ -66,35 +72,39 @@ public class GrabAndMove : MonoBehaviour
     private void FixedUpdate()
     {
 
-        if (F_keyPressed)
+        if (dockedToObject)
         {
+            m_interactiveObject.transform.parent = m_RightCheck.transform;
             
         }
-        else
-        {
-            
-        }
-            
+
         
     }
 
 
 
-
-// The player is near an interactive object if a circlecast to the RightCheck position hits anything designated as interactive
+    
+// return true if a circlecast to the RightCheck position hits any object inside the "Interactive Objects" layer
     private bool DetectInteractiveObjects()
     {
-        Collider2D[] interactiveObjects =
-            Physics2D.OverlapCircleAll(m_RightCheck.position, k_RightRadius, m_WhatIsInteractive);
-        foreach (Collider2D interactiveObject in interactiveObjects)
+        //making the circlecast that detects objects near to it
+        Collider2D[] detectedObjects = Physics2D.OverlapCircleAll(m_RightCheck.position, k_RightRadius, m_LayerOfMovableObjects);
+        
+        //take each object detected inside the circlecast 
+        foreach (Collider2D detectedObject in detectedObjects)
         {
-            if (interactiveObject.gameObject != gameObject)
+            //check if the detected object is inside the "Interactive Objects" layer
+            //if it is, store it inside m_interactiveObject 
+            if (detectedObject.gameObject.CompareTag("Interactive Object"))
             {
-                // Debug.Log("Detected interactive object");
+                m_interactiveObject = detectedObject.gameObject;
                 return true;
             }
         }
 
         return false;
     }
+    
+    
 }
+
