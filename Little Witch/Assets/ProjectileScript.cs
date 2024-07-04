@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 
 public class ProjectileScript : MonoBehaviour
@@ -9,8 +11,6 @@ public class ProjectileScript : MonoBehaviour
     private Camera mainCam;
     private Rigidbody2D rb;
     public float force;
-
-    public Collider2D playerCollider;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,11 +29,8 @@ public class ProjectileScript : MonoBehaviour
         float rot = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
         
         transform.rotation = Quaternion.Euler(0, 0, rot + 90);
-
-        if (playerCollider != null)
-        {
-            Physics2D.IgnoreCollision(GetComponent<Collider2D>(), playerCollider);
-        }
+        
+        Physics2D.IgnoreLayerCollision(0, 6);
         
         Destroy(gameObject, 3f);
     }
@@ -44,10 +41,9 @@ public class ProjectileScript : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnCollisionEnter2D(Collision2D other)
     {
-        Debug.Log("Collision Detected");
+        Debug.Log("touched!");
         Destroy(gameObject);
     }
-    
 }
