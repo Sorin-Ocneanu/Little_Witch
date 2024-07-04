@@ -278,6 +278,7 @@ GameObject:
   m_Component:
   - component: {fileID: 537287440}
   - component: {fileID: 537287439}
+  - component: {fileID: 537287441}
   m_Layer: 0
   m_Name: Game Logic
   m_TagString: Untagged
@@ -312,6 +313,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &537287441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 537287438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9081effa3fd1c9c4ba668ef6a2b132c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RightCheck: {fileID: 147626199}
+  m_WhatIsInteractive:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &977581716
 GameObject:
   m_ObjectHideFlags: 0
@@ -1067,13 +1084,8 @@ MonoBehaviour:
   m_WhatIsGround:
     serializedVersion: 2
     m_Bits: 8
-  m_WhatIsInteractive:
-    serializedVersion: 2
-    m_Bits: 64
   m_GroundCheck: {fileID: 503217454}
   m_CeilingCheck: {fileID: 1266707962}
-  m_RightCheck: {fileID: 147626199}
-  m_LeftCheck: {fileID: 1044572009}
   m_CrouchDisableCollider: {fileID: 0}
   OnLandEvent:
     m_PersistentCalls:

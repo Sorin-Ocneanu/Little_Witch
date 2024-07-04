@@ -8,7 +8,7 @@ public class MovementControl : MonoBehaviour
     public CharacterController2D controller;
     public float horizontalMove = 0f;
     float runSpeed = 40f;
-    bool jump = false;
+    private bool jump = false;
 
     // Update is called once per frame
     void Update()
