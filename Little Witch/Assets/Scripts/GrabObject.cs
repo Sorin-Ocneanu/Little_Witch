@@ -4,16 +4,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class GrabAndMove : MonoBehaviour
+public class GrabObject : MonoBehaviour
 {
 
     [SerializeField] private Transform RightCheck; // A position marking where to check for
     [SerializeField] private LayerMask m_LayerOfMovableObjects; // The layer of the interactable objects
-    [SerializeField] private CharacterController2D controller;  //importing the character controller
     [SerializeField] private GameObject player;
 
     private const float k_RightRadius = 1f;    //the radius around the point of interactive object detecion
-    private bool F_keyPressed;                  //used to remember if F key was pressed
+    public bool F_keyIsPressed;                //used to remember if F key was pressed
     private Vector3 m_OriginPos;
     private GameObject m_interactiveObject;     //used to remember the interactive object 
 
@@ -47,9 +46,9 @@ public class GrabAndMove : MonoBehaviour
             if (DetectInteractiveObjects())
             {
                 //toggle the past value of F_keyPressed
-                F_keyPressed = !F_keyPressed;
+                F_keyIsPressed = !F_keyIsPressed;
                 
-                if (F_keyPressed)
+                if (F_keyIsPressed)
                 {
                     Debug.Log("Activated F while near a movable object");
                     dockToObject();
@@ -65,7 +64,6 @@ public class GrabAndMove : MonoBehaviour
 
             }
             
-          
                
         }
      
@@ -75,29 +73,19 @@ public class GrabAndMove : MonoBehaviour
     private void dockToObject()
     {
         m_interactiveObject.transform.SetParent(player.transform);
-        
+
         if (player.transform.localScale.x < 0)
         {
-            
             m_interactiveObject.transform.position = player.transform.position - new Vector3(1.5f, 0.08f);
         }
         else
             m_interactiveObject.transform.position = player.transform.position + new Vector3(1.5f, 0.08f);
         
-
-
         Debug.Log("I am docked");
     }
 
     private void unDockFromObject()
     {
-        if (player.transform.localScale.x < 0)
-        {
-            Vector3 scale = m_interactiveObject.transform.localScale;
-            scale.x *= -1f;
-            m_interactiveObject.transform.localScale = scale;
-            Debug.Log("Rotated the object");
-        }
         m_interactiveObject.transform.SetParent(null);
     }
 

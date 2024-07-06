@@ -5,6 +5,8 @@ using UnityEngine;
 public class MovementControl : MonoBehaviour
 {
 
+    [SerializeField] private GrabObject grab;
+
     public CharacterController2D controller;
     public float horizontalMove = 0f;
     float runSpeed = 40f;
@@ -16,7 +18,7 @@ public class MovementControl : MonoBehaviour
         //calculates the horizontal move (1 or -1) * runSpeed 
         horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
 
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump") && !grab.F_keyIsPressed)
         {
             jump = true;
         }
