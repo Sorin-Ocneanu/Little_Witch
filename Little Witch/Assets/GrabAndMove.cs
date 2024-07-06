@@ -10,7 +10,7 @@ public class GrabAndMove : MonoBehaviour
     [SerializeField] private Transform RightCheck; // A position marking where to check for
     [SerializeField] private LayerMask m_LayerOfMovableObjects; // The layer of the interactable objects
 
-    private const float k_RightRadius = .7f;    //the radius around the point of interactive object detecion
+    private const float k_RightRadius = 1f;    //the radius around the point of interactive object detecion
     private bool F_keyPressed;                  //used to remember if F key was pressed
     private Vector3 m_OriginPos;
     private GameObject m_interactiveObject;     //used to remember the interactive object 
@@ -71,7 +71,9 @@ public class GrabAndMove : MonoBehaviour
 
     private void dockToObject()
     {
-        m_interactiveObject.transform.SetParent(RightCheck.transform); 
+        m_interactiveObject.transform.SetParent(RightCheck.transform);
+        m_interactiveObject.transform.position = new Vector3(0.05f,-0.5f);
+        Debug.Log("I am docked");
     }
 
     private void unDockFromObject()
