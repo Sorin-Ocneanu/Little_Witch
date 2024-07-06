@@ -9,6 +9,8 @@ public class GrabAndMove : MonoBehaviour
 
     [SerializeField] private Transform RightCheck; // A position marking where to check for
     [SerializeField] private LayerMask m_LayerOfMovableObjects; // The layer of the interactable objects
+    [SerializeField] private CharacterController2D controller;  //importing the character controller
+    [SerializeField] private GameObject player;
 
     private const float k_RightRadius = 1f;    //the radius around the point of interactive object detecion
     private bool F_keyPressed;                  //used to remember if F key was pressed
@@ -49,14 +51,15 @@ public class GrabAndMove : MonoBehaviour
                 
                 if (F_keyPressed)
                 {
-                    dockToObject();
                     Debug.Log("Activated F while near a movable object");
+                    dockToObject();
+                    
                     
                 }
                 else
                 {
-                    unDockFromObject();
                     Debug.Log("Deactivated F while near a movable object");
+                    unDockFromObject();
                 }
                 
 
@@ -71,14 +74,30 @@ public class GrabAndMove : MonoBehaviour
 
     private void dockToObject()
     {
-        m_interactiveObject.transform.SetParent(RightCheck.transform);
-        m_interactiveObject.transform.position = new Vector3(0.05f,-0.5f);
+        m_interactiveObject.transform.SetParent(player.transform);
+        
+        if (player.transform.localScale.x < 0)
+        {
+            
+            m_interactiveObject.transform.position = player.transform.position - new Vector3(1.5f, 0.08f);
+        }
+        else
+            m_interactiveObject.transform.position = player.transform.position + new Vector3(1.5f, 0.08f);
+        
+
+
         Debug.Log("I am docked");
     }
 
     private void unDockFromObject()
     {
-        
+        if (player.transform.localScale.x < 0)
+        {
+            Vector3 scale = m_interactiveObject.transform.localScale;
+            scale.x *= -1f;
+            m_interactiveObject.transform.localScale = scale;
+            Debug.Log("Rotated the object");
+        }
         m_interactiveObject.transform.SetParent(null);
     }
 
