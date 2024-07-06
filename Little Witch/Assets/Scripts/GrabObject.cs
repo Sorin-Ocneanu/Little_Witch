@@ -12,7 +12,7 @@ public class GrabObject : MonoBehaviour
     [SerializeField] private GameObject player;
 
     private const float k_RightRadius = 1f;    //the radius around the point of interactive object detecion
-    public bool F_keyIsPressed;                //used to remember if F key was pressed
+    public bool IsGrabbing;                //used to remember if F key was pressed
     private Vector3 m_OriginPos;
     private GameObject m_interactiveObject;     //used to remember the interactive object 
 
@@ -46,9 +46,9 @@ public class GrabObject : MonoBehaviour
             if (DetectInteractiveObjects())
             {
                 //toggle the past value of F_keyPressed
-                F_keyIsPressed = !F_keyIsPressed;
+                IsGrabbing = !IsGrabbing;
                 
-                if (F_keyIsPressed)
+                if (IsGrabbing)
                 {
                     Debug.Log("Activated F while near a movable object");
                     dockToObject();

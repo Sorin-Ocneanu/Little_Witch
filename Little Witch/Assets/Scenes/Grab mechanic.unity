@@ -266,9 +266,9 @@ MonoBehaviour:
   RightCheck: {fileID: 6186134463521317722}
   m_LayerOfMovableObjects:
     serializedVersion: 2
-    m_Bits: 1
-  controller: {fileID: 0}
+    m_Bits: 4294967295
   player: {fileID: 5827146277921478716}
+  IsGrabbing: 0
 --- !u!1 &977581716
 GameObject:
   m_ObjectHideFlags: 0
@@ -765,7 +765,7 @@ MonoBehaviour:
   m_CrouchSpeed: 0.36
   m_MovementSmoothing: 0.05
   m_AirControl: 1
-  m_WhatIsGround:
+  m_WhatIsJumpable:
     serializedVersion: 2
     m_Bits: 8
   m_GroundCheck: {fileID: 8376258032012786047}
@@ -1197,6 +1197,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bf04675584ef714fbb6eceb9346ac5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  grab: {fileID: 537287441}
   controller: {fileID: 9208952453849764}
   horizontalMove: 0
 --- !u!50 &8165246266622557100
@@ -1269,7 +1270,7 @@ GameObject:
   - component: {fileID: 3583275472580235231}
   - component: {fileID: 5229786770008511329}
   - component: {fileID: 8165246266622557100}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Interactive Object
   m_TagString: Interactive Object
   m_Icon: {fileID: 0}
