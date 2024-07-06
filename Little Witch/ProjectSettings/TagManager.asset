@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - SlimPlatform
+  - Enemy
   layers:
   - Default
   - TransparentFX
