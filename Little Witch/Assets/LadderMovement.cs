@@ -51,11 +51,11 @@ public class LadderMovement : MonoBehaviour
     {
         if (isClimbing)
         {
-            rb.velocity = new Vector2(0, inputVertical * speed);  // Move only vertically
+            rb.velocity = new Vector2(rb.velocity.x, inputVertical * speed);  // Move only vertically
 
             if (inputVertical == 0f)
             {
-                rb.velocity = new Vector2(0, 0);  // Stay fixed when no vertical input
+                rb.velocity = new Vector2(rb.velocity.x, 0);  // Stay fixed when no vertical input
             }
         }
         else
@@ -80,6 +80,9 @@ public class LadderMovement : MonoBehaviour
             isLadder = false;
             isClimbing = false;
             rb.gravityScale = 1f;  // Enable gravity when leaving the ladder
+
+            // Ensure the vertical velocity is reset to prevent sticking to the ladder
+            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y > 0 ? rb.velocity.y : 0);
         }
     }
 }
