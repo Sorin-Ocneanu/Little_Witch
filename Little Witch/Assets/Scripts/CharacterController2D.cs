@@ -66,7 +66,7 @@ public class CharacterController2D : MonoBehaviour
 	
 
 
-	public void Move(float move, bool crouch, bool jump)
+	public void Move(float move, bool crouch, bool jump, bool flip)
 	{
 		// If crouching, check to see if the character can stand up
 		if (!crouch)
@@ -116,13 +116,13 @@ public class CharacterController2D : MonoBehaviour
 			m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
 
 			// If the input is moving the player right and the player is facing left...
-			if (move > 0 && !m_FacingRight)
+			if (move > 0 && !m_FacingRight && flip)
 			{
 				// ... flip the player.
 				Flip();
 			}
 			// Otherwise if the input is moving the player left and the player is facing right...
-			else if (move < 0 && m_FacingRight)
+			else if (move < 0 && m_FacingRight && flip)
 			{
 				// ... flip the player.
 				Flip();

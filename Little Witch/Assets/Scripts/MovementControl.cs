@@ -10,7 +10,9 @@ public class MovementControl : MonoBehaviour
     public CharacterController2D controller;
     public float horizontalMove = 0f;
     float runSpeed = 40f;
-    private bool jump = false;
+    private bool jump;  //used to determine if the character should jump
+    private bool flip;  //used to determine if the character should flip
+    
 
     // Update is called once per frame
     void Update()
@@ -22,12 +24,18 @@ public class MovementControl : MonoBehaviour
         {
             jump = true;
         }
+
+        //if the character is grabbing it should not flip
+        if (grab.IsGrabbing)
+            flip = false;
+        else
+            flip = true;
     }
 
     void FixedUpdate()
     {
         //Move character
-        controller.Move(horizontalMove * Time.fixedDeltaTime,false,jump);
+        controller.Move(horizontalMove * Time.fixedDeltaTime,false,jump,flip);
         jump = false;
     }
 
