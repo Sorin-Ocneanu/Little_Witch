@@ -11,7 +11,7 @@ public class GrabObject : MonoBehaviour
     [SerializeField] private LayerMask m_LayerOfMovableObjects; // The layer of the interactable objects
     [SerializeField] private GameObject player;
 
-    private const float k_RightRadius = 1f;    //the radius around the point of interactive object detecion
+    private const float k_RightRadius = 0.4f;    //the radius around the point of interactive object detecion
     public bool IsGrabbing;                //used to remember if F key was pressed
     private Vector3 m_OriginPos;
     private GameObject m_interactiveObject;     //used to remember the interactive object 
