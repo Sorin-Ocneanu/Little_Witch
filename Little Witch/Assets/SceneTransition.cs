@@ -7,7 +7,7 @@ public class SceneTransition : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            SceneManager.LoadScene("Scena2");  // Asigură-te că "Scene2" este numele exact al scenei următoare
+            SceneManager.LoadScene("Transition2");  // Asigură-te că "Scene2" este numele exact al scenei următoare
         }
     }
 }
