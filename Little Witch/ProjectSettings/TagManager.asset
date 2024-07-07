@@ -6,11 +6,12 @@ TagManager:
   tags:
   - SlimPlatform
   - Enemy
+  - Interactive Object
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Ground
+  - Jumpable
   - Water
   - UI
   - Player
