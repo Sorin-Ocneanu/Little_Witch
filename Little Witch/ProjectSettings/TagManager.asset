@@ -4,16 +4,19 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - SlimPlatform
+  - Enemy
+  - Interactive Object
   - Logic
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Ground
+  - Jumpable
   - Water
   - UI
-  - 
-  - 
+  - Player
+  - Enemy
   - 
   - 
   - 
@@ -47,4 +50,7 @@ TagManager:
     locked: 0
   - name: Foreground
     uniqueID: 2719876505
+    locked: 0
+  - name: Player
+    uniqueID: 3124371297
     locked: 0
