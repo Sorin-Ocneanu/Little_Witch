@@ -76,10 +76,10 @@ public class GrabObject : MonoBehaviour
 
         if (player.transform.localScale.x < 0)
         {
-            m_interactiveObject.transform.position = player.transform.position - new Vector3(1.5f, 0.08f);
+            m_interactiveObject.transform.position = player.transform.position - new Vector3(1.5f, 0f);
         }
         else
-            m_interactiveObject.transform.position = player.transform.position + new Vector3(1.5f, 0.08f);
+            m_interactiveObject.transform.position = player.transform.position + new Vector3(1.5f, 0f);
         
         Debug.Log("I am docked");
     }
