@@ -14,16 +14,20 @@ public class EnemyMovementScript : MonoBehaviour
 
     private void Start()
     {
-        targetTransformer = transformers[0];
+        transformed_id = 0;
+        targetTransformer = transformers[transformed_id];
     }
     void Update()
     {
         if (stunSeconds <= 0)
         {
-            transform.position = Vector2.MoveTowards(transform.position, targetTransformer.position, speed * Time.deltaTime);
             if (Vector2.Distance(transform.position, targetTransformer.position) < 0.1f)
             {
-                pickNextTransformer();
+              this.targetTransformer = pickNextTransformer();
+            }
+            else
+            {
+                transform.position = Vector2.MoveTowards(transform.position, targetTransformer.position, speed * Time.deltaTime);
             }
         }
         else {
@@ -36,7 +40,7 @@ public class EnemyMovementScript : MonoBehaviour
     private Transform pickNextTransformer()
     {
         transformed_id++;
-        if (transformed_id > transformers.Length) {
+        if (transformed_id >= transformers.Length) {
             transformed_id = 0;
         }
         return transformers[transformed_id];

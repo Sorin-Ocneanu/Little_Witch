@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class CameraAttashment : MonoBehaviour
 {
-    public Camera camera;
+    private bool isAttashed;
+    public Rigidbody2D body;
 
 
     // Update is called once per frame
@@ -13,23 +14,31 @@ public class CameraAttashment : MonoBehaviour
         attash(Input.GetKeyDown("g"));
     }
 
+    private void LateUpdate()
+    {
+        if (isAttashed) {
+            Vector3 vector = this.body.transform.position;
+            vector.z = -8;
+            this.transform.position = vector;
+        }
+    }
+
     private void attash(bool value)
     {
         if (value)
         {
-            if (this.camera.transform.parent == null) {
-                Vector3 vector = this.transform.position;
-                vector.z = -4;
-                this.camera.transform.parent = this.transform;
-                this.camera.transform.position = vector;
-            }
-            else
+            if (isAttashed)
             {
-                this.camera.transform.position = new Vector3Int(0, 0, -10);
-                this.camera.transform.parent = null;
+                isAttashed = false;
+                this.transform.position = new Vector3Int(0, 0, -10);
+            }
+            else {
+                isAttashed = true;
             }
             
         }
 
     }
+
+
 }
