@@ -1,11 +1,15 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class LogicScript : MonoBehaviour
 {
-    // Start is called before the first frame update
+    private int levelStars;
+    public Text score;
+
     void Start()
     {
         
@@ -19,5 +23,15 @@ public class LogicScript : MonoBehaviour
             
             SceneManager.LoadScene(SceneManager.GetActiveScene().name); //Load the current scene
         } 
+    }
+
+    public void addStar(int value)
+    {
+        levelStars = levelStars + value;
+        score.text = Convert.ToString(levelStars);
+    }
+    public int getStars()
+    {
+        return levelStars;
     }
 }
