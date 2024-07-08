@@ -7,8 +7,6 @@ using UnityEngine.UI;
 
 public class LogicScript : MonoBehaviour
 {
-    private int levelStars;
-    public Text score;
 
     void Start()
     {
@@ -25,13 +23,5 @@ public class LogicScript : MonoBehaviour
         } 
     }
 
-    public void addStar(int value)
-    {
-        levelStars = levelStars + value;
-        score.text = Convert.ToString(levelStars);
-    }
-    public int getStars()
-    {
-        return levelStars;
-    }
+    
 }

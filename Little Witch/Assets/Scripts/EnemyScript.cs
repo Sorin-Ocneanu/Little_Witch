@@ -6,19 +6,14 @@ using UnityEngine;
 public class EnemyScript : MonoBehaviour
 {
     public GameObject pointA;
-
     public GameObject pointB;
 
     private Rigidbody2D rb;
-
     private Transform currentPoint;
 
     public float speed;
-    
     private bool isSleeping = false;
-    
     private float sleepDuration = 3f;
-
     private Vector2 sleepPosition;
 
     // Start is called before the first frame update
@@ -26,7 +21,6 @@ public class EnemyScript : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         currentPoint = pointB.transform;
-        
     }
 
     // Update is called once per frame
@@ -58,6 +52,7 @@ public class EnemyScript : MonoBehaviour
         {
             currentPoint = pointA.transform;
         }
+        
         if (Vector2.Distance(transform.position, currentPoint.position) < 0.5f && currentPoint == pointA.transform)
         {
             currentPoint = pointB.transform;

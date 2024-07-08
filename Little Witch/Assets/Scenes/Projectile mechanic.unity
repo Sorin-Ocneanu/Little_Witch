@@ -343,11 +343,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9081effa3fd1c9c4ba668ef6a2b132c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RightCheck: {fileID: 1987531633}
-  m_LayerOfMovableObjects:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  player: {fileID: 1156111674273551434}
   IsGrabbing: 0
 --- !u!1 &818470621
 GameObject:
@@ -373,8 +368,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 818470621}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.49, y: -1.91, z: -0.0017336111}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.4899998, y: -1.91, z: -0.0017336111}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -541,7 +536,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 973193119}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 10.92, y: -1.9, z: -0.0017336111}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1510,14 +1505,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_JumpForce: 550
-  m_CrouchSpeed: 0.36
   m_MovementSmoothing: 0.05
   m_AirControl: 1
   m_WhatIsJumpable:
     serializedVersion: 2
     m_Bits: 8
-  m_GroundCheck: {fileID: 5667687254906941573}
-  m_CeilingCheck: {fileID: 1824862009180952881}
   m_CrouchDisableCollider: {fileID: 0}
   OnLandEvent:
     m_PersistentCalls:
@@ -1785,8 +1777,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bf04675584ef714fbb6eceb9346ac5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grab: {fileID: 810067815}
-  controller: {fileID: 1169241069554140900}
   horizontalMove: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
@@ -1799,6 +1789,6 @@ SceneRoots:
   - {fileID: 810067814}
   - {fileID: 1728658452}
   - {fileID: 84714726}
+  - {fileID: 1675261323}
   - {fileID: 818470622}
   - {fileID: 973193120}
-  - {fileID: 1675261323}

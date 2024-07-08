@@ -8,16 +8,17 @@ TagManager:
   - Enemy
   - Interactive Object
   - Logic
+  - Score
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Jumpable
+  - Ground
   - Water
   - UI
   - Player
   - Enemy
-  - 
+  - Movable Objects
   - 
   - 
   - 

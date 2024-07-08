@@ -7,9 +7,8 @@ using UnityEngine.Serialization;
 public class GrabObject : MonoBehaviour
 {
 
-    [SerializeField] private Transform RightCheck; // A position marking where to check for
-    [SerializeField] private LayerMask m_LayerOfMovableObjects; // The layer of the interactable objects
-    [SerializeField] private GameObject player;
+    private LayerMask LayerOfMovableObjects; // The layer of the interactable objects
+    private GameObject player;
 
     private const float k_RightRadius = 0.4f;    //the radius around the point of interactive object detecion
     public bool IsGrabbing;                //used to remember if F key was pressed
@@ -19,19 +18,17 @@ public class GrabObject : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //check if m_RightCheck is assigned in the inspector
-        if (RightCheck == null)
+        //assign default layer as layer of movable objects
+        int layer = LayerMask.NameToLayer("Movable Objects");
+        
+        if (layer != -1)
         {
-            Debug.LogError("m_RightCheck is not assigned in the inspector");
-            enabled = false; // disable the current script component
+            LayerOfMovableObjects = 1 << layer;
         }
 
-        //check if m_WhatIsInteractive is assigned in the inspector
-        if (m_LayerOfMovableObjects.value == 0)
+        if (player == null)
         {
-            Debug.LogError("m_WhatIsInteractive is not assigned in the inspector");
-            enabled = false; // disable the current script component
-
+            player = GameObject.FindGameObjectWithTag("Player");
         }
 
     }
@@ -47,27 +44,21 @@ public class GrabObject : MonoBehaviour
             {
                 //toggle the past value of F_keyPressed
                 IsGrabbing = !IsGrabbing;
-                
+
                 if (IsGrabbing)
                 {
                     Debug.Log("Activated F while near a movable object");
                     dockToObject();
-                    
-                    
+
+
                 }
                 else
                 {
                     Debug.Log("Deactivated F while near a movable object");
                     unDockFromObject();
                 }
-                
-
             }
-            
-               
         }
-     
-
     }
 
     private void dockToObject()
@@ -96,7 +87,7 @@ public class GrabObject : MonoBehaviour
     private bool DetectInteractiveObjects()
     {
         //making the circlecast that detects objects near to it
-        Collider2D[] detectedObjects = Physics2D.OverlapCircleAll(RightCheck.position, k_RightRadius, m_LayerOfMovableObjects);
+        Collider2D[] detectedObjects = Physics2D.OverlapCircleAll(transform.position, k_RightRadius, LayerOfMovableObjects);
         
         //take each object detected inside the circlecast 
         foreach (Collider2D detectedObject in detectedObjects)
