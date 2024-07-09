@@ -289,7 +289,7 @@ MonoBehaviour:
   m_AirControl: 1
   m_WhatIsJumpable:
     serializedVersion: 2
-    m_Bits: 264
+    m_Bits: 8
   m_CrouchDisableCollider: {fileID: 0}
   OnLandEvent:
     m_PersistentCalls:
@@ -620,7 +620,7 @@ GameObject:
   - component: {fileID: 234361425}
   - component: {fileID: 234361424}
   - component: {fileID: 234361423}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Interactive Object
   m_TagString: Interactive Object
   m_Icon: {fileID: 0}

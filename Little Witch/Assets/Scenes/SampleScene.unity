@@ -903,7 +903,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 823ceee6deb0ec049aa06f82f25a9145, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1280,7 +1280,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bf04675584ef714fbb6eceb9346ac5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 1927628938}
   horizontalMove: 0
 --- !u!114 &1927628938
 MonoBehaviour:
@@ -1295,16 +1294,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_JumpForce: 400
-  m_CrouchSpeed: 0.36
   m_MovementSmoothing: 0.05
   m_AirControl: 0
-  m_WhatIsGround:
+  m_WhatIsJumpable:
     serializedVersion: 2
-    m_Bits: 8
-  m_GroundCheck: {fileID: 2098233373}
-  m_CeilingCheck: {fileID: 107802327}
+    m_Bits: 0
   m_CrouchDisableCollider: {fileID: 0}
   OnLandEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnInteractiveObjectEvent:
     m_PersistentCalls:
       m_Calls: []
   OnCrouchEvent:

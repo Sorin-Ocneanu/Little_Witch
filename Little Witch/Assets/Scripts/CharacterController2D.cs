@@ -12,7 +12,7 @@ public class CharacterController2D : MonoBehaviour
 	private Transform GroundCheck;												// A position marking where to check if the player is grounded.
 	[SerializeField] private Collider2D m_CrouchDisableCollider;				// A collider that will be disabled when crouching
 	const float k_GroundedRadius = .2f;											// Radius of the overlap circle to determine if grounded
-	private bool m_Grounded;													// Whether the player is grounded.
+	public bool m_Grounded;													// Whether the player is grounded.
 	private Rigidbody2D m_Rigidbody2D;
 	private bool m_FacingRight = true;											// For determining which way the player is currently facing.
 	private Vector3 m_Velocity = Vector3.zero;

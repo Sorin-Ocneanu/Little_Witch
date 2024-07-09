@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class LadderMovement : MonoBehaviour
@@ -9,10 +10,12 @@ public class LadderMovement : MonoBehaviour
     private float inputVertical;
     private bool isLadder;
     private bool isClimbing;
+    private CharacterController2D groundCheck;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        groundCheck = GetComponent<CharacterController2D>();
     }
 
     void Update()
@@ -22,16 +25,18 @@ public class LadderMovement : MonoBehaviour
             if (Input.GetKey(KeyCode.W))
             {
                 inputVertical = 1f;  // Move up
-                isClimbing = true;
+                
+                    isClimbing = true;
             }
             else if (Input.GetKey(KeyCode.S))
             {
                 inputVertical = -1f;  // Move down
-                isClimbing = true;
+                    isClimbing = true;
             }
             else
             {
                 inputVertical = 0f;  // Stay in place
+
             }
 
             if (isClimbing)
@@ -43,25 +48,19 @@ public class LadderMovement : MonoBehaviour
         {
             isClimbing = false;
             inputVertical = 0f;
-            rb.gravityScale = 1f;  // Enable gravity when not climbing
+            rb.gravityScale = 2f;  // Enable gravity when not climbing
         }
     }
 
     void FixedUpdate()
     {
-        if (isClimbing)
+        if (isClimbing && groundCheck.m_Grounded)
         {
-            rb.velocity = new Vector2(rb.velocity.x, inputVertical * speed);  // Move only vertically
-
-            if (inputVertical == 0f)
-            {
-                rb.velocity = new Vector2(rb.velocity.x, 0);  // Stay fixed when no vertical input
-            }
+            rb.velocity = new Vector2(rb.velocity.x, inputVertical * speed);  
         }
-        else
+        else if(isClimbing)
         {
-            float inputHorizontal = Input.GetAxisRaw("Horizontal");
-            rb.velocity = new Vector2(inputHorizontal * speed, rb.velocity.y);  // Allow horizontal movement when not climbing
+            rb.velocity = new Vector2(0, inputVertical * speed);  // Move only vertically
         }
     }
 
@@ -79,7 +78,7 @@ public class LadderMovement : MonoBehaviour
         {
             isLadder = false;
             isClimbing = false;
-            rb.gravityScale = 1f;  // Enable gravity when leaving the ladder
+            rb.gravityScale = 2f;  // Enable gravity when leaving the ladder
 
             // Ensure the vertical velocity is reset to prevent sticking to the ladder
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y > 0 ? rb.velocity.y : 0);

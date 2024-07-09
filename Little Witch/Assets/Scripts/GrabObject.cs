@@ -19,7 +19,7 @@ public class GrabObject : MonoBehaviour
     void Start()
     {
         //assign default layer as layer of movable objects
-        int layer = LayerMask.NameToLayer("Movable Objects");
+        int layer = LayerMask.NameToLayer("Default");
         
         if (layer != -1)
         {
@@ -39,6 +39,7 @@ public class GrabObject : MonoBehaviour
         //if the F key is pressed 
         if (Input.GetKeyDown(KeyCode.F))
         {
+            Debug.Log("you pressed F");
             //check if near an interactive object
             if (DetectInteractiveObjects())
             {
