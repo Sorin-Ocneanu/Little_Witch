@@ -8,10 +8,10 @@ public class Shooting : MonoBehaviour
     private Camera mainCam;
     private Vector3 mousePos;
     public GameObject bullet;
-    public Transform bulletTransform;
     public bool canFire;
     public float timer;
     public float timeBetweenFiring;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +21,8 @@ public class Shooting : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+   
+        
         mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
 
         Vector3 rotation = mousePos - transform.position;
@@ -41,8 +43,12 @@ public class Shooting : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.E) && canFire)
         {
+            Physics2D.IgnoreLayerCollision(0, 0, true);
             canFire = false;
-            Instantiate(bullet, bulletTransform.position, Quaternion.identity);
+            Instantiate(bullet, transform.position, Quaternion.identity);
+            
+            
+
         }
     }
 }
