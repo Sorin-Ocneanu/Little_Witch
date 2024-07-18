@@ -12,6 +12,7 @@ public class ProjectileScript : MonoBehaviour
     private Rigidbody2D rb;
     public float force;
     
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -33,13 +34,13 @@ public class ProjectileScript : MonoBehaviour
 
         Physics2D.IgnoreLayerCollision(0, 6);
 
-        Destroy(gameObject, 3f);
+        Destroy(gameObject, 1f);
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
