@@ -12,7 +12,14 @@ public class GoThroughPlatform : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (currentSlimPlatform == null)
+        {
+            currentSlimPlatform = GameObject.FindWithTag("SlimPlatform");
+        }
+        else
+        {
+            currentSlimPlatform = null;
+        }
     }
 
     // Update is called once per frame

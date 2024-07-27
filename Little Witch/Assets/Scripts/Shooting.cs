@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Shooting : MonoBehaviour
 {
-    private Camera mainCam;
+    public Camera mainCam;
     private Vector3 mousePos;
     public GameObject bullet;
     public bool canFire;
@@ -15,7 +15,7 @@ public class Shooting : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        mainCam = GameObject.FindWithTag("MainCamera").GetComponent<Camera>();
+            mainCam = GameObject.FindWithTag("MainCamera").GetComponent<Camera>();
     }
 
     // Update is called once per frame

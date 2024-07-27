@@ -3,14 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class MovementControl : MonoBehaviour
 {
-
+    public PlayerAtributes speedOfPlayer;
     private GrabObject grabObject; //using script instance to see if the character is in grab mode
     private CharacterController2D controller; //using script instance to move the character
     public float horizontalMove;
-    float runSpeed = 40f;
     private bool jump;  //used to determine if the character should jump
     private bool flip;  //used to determine if the character should flip
 
@@ -32,8 +32,9 @@ public class MovementControl : MonoBehaviour
     void Update()
     {
         //calculates the horizontal move (1 or -1) * runSpeed 
-        horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
+        horizontalMove = Input.GetAxisRaw("Horizontal") * speedOfPlayer.runSpeed;
 
+        //jump as long as you are not grabbing an object
         if (Input.GetButtonDown("Jump") && !grabObject.IsGrabbing)
         {
             jump = true;
@@ -49,7 +50,7 @@ public class MovementControl : MonoBehaviour
     void FixedUpdate()
     {
         //Move character
-        controller.Move(horizontalMove * Time.fixedDeltaTime,false,jump,flip);
+        controller.Move(horizontalMove,false,jump,flip);
         jump = false;
     }
 

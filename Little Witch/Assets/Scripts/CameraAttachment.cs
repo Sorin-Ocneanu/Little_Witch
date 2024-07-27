@@ -17,39 +17,21 @@ public class CameraAttachment : MonoBehaviour
         {
             mainSubject = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody2D>();
         }
+        
     }
 
     // Update is called once per frame
-    private void Update()
-    {
-        attach(Input.GetKeyDown("g"));
-    }
-
     private void LateUpdate()
     {
-        if (isAttached) {
-            Vector3 vector = mainSubject.transform.position;
-            vector.z = -8;
-            transform.position = vector;
-        }
+        //follows the player with the camera
+        Vector3 vector = mainSubject.transform.position;
+        //makes sure that the camera is in front of all the layers
+        vector.z = -1;
+        transform.position = vector;
     }
-
-    private void attach(bool value)
-    {
-        if (value)
-        {
-            if (isAttached)
-            {
-                isAttached = false;
-                transform.position = new Vector3Int(0, 0, -10);
-            }
-            else {
-                isAttached = true;
-            }
-            
-        }
-
-    }
+    
+    
+   
 
 
 }
